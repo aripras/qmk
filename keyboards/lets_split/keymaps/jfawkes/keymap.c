@@ -28,6 +28,26 @@ enum custom_keycodes {
   ADJUST,
 };
 
+enum {
+  TD_BRACKET= 0,
+  TD_CURLY = 1,
+  TD_CLOSE_BRACKET = 2,
+  TD_CLOSE_CURLY = 3,
+  TD_QUOTDOUBLE = 4
+};
+
+//Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  //Tap once for Esc, twice for Caps Lock
+  [TD_BRACKET]  = ACTION_TAP_DANCE_DOUBLE(S(KC_9), S(KC_COMM)),
+  [TD_CURLY] = ACTION_TAP_DANCE_DOUBLE(S(KC_LBRC), KC_LBRC),
+  [TD_CLOSE_BRACKET] = ACTION_TAP_DANCE_DOUBLE(S(KC_0), S(KC_DOT)),
+  [TD_CLOSE_CURLY] = ACTION_TAP_DANCE_DOUBLE(S(KC_RBRC), KC_RBRC),
+  [TD_QUOTDOUBLE] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, S(KC_QUOT))
+// Other declarations would go here, separated by commas, if you have them
+};
+
+//In Layer declaration, add tap dance item in place of a key code
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -255,9 +275,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case ARROWS:
       if (record->event.pressed) {
-        layer_on(_GUI);
+        layer_on(_ARROWS);
       } else {
-        layer_off(_GUI);
+        layer_off(_ARROWS);
       }
       return false;
       break;
