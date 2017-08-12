@@ -35,8 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 
-#define MOUSEKEY_DELAY             100
-#define MOUSEKEY_INTERVAL          30
+#define MOUSEKEY_DELAY             80
+#define MOUSEKEY_INTERVAL          40
 #define MOUSEKEY_MAX_SPEED         8
 
 #define TAPPING_TERM 150
