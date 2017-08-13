@@ -38,7 +38,8 @@ enum {
   TD_BACKSLASH = 6,
   TD_ESC_CAPS = 7,
   TD_AT_SHARP = 8,
-  TD_HASH = 9
+  TD_HASH = 9,
+  TD_TAB = 10
 };
 
 //Tap Dance Definitions
@@ -54,6 +55,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
   [TD_AT_SHARP] = ACTION_TAP_DANCE_DOUBLE(S(KC_2),S(KC_3)),
   [TD_HASH] = ACTION_TAP_DANCE_DOUBLE(KC_JYEN, S(KC_GRV)),
+  [TD_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, S(KC_TAB))
 // Other declarations would go here, separated by commas, if you have them
 };
 
@@ -77,10 +79,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP( \
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    S(KC_TAB), \
   KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-  GUI,  TD(TD_ESC_CAPS), KC_LALT, KC_LGUI, KC_BSPC,   OSL(LOWER),  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   GUI \
+  GUI,  TD(TD_ESC_CAPS), KC_LALT, KC_LGUI, KC_BSPC,   LOWER,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   GUI \
 ),
 
 /* Colemak
@@ -133,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = KEYMAP( \
   ARROWS      , KC_EXLM, KC_PPLS, TD(TD_HYPHEN), KC_PEQL,  TD(TD_BRACKET), TD(TD_CLOSE_BRACKET),   KC_7, KC_8, KC_9, S(KC_7), KC_F12 , \
   _______,  KC_GRV, TD(TD_AT_SHARP) , S(KC_5),   TD(TD_BACKSLASH),   TD(TD_CURLY),   TD(TD_CLOSE_CURLY),   KC_4, KC_5, KC_6, S(KC_BSLS), KC_PIPE, \
-  _______           , KC_F7,   S(KC_3),   S(KC_4), TD(TD_HASH), TD(TD_QUOTDOUBLE), KC_0       ,    KC_1  , KC_2 ,KC_3, S(KC_1), _______, \
+  _______           , KC_F7,   TD(TD_AT_SHARP),   S(KC_4), TD(TD_HASH), TD(TD_QUOTDOUBLE), KC_0       ,    KC_1  , KC_2 ,KC_3, S(KC_1), _______, \
   _______           , _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, _______ \
 ),
 
