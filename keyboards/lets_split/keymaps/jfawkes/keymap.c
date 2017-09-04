@@ -36,10 +36,11 @@ enum {
   TD_QUOTDOUBLE = 4,
   TD_HYPHEN = 5,
   TD_BACKSLASH = 6,
-  TD_ESC_CAPS = 7,
+  TD_ESC_UNDO = 7,
   TD_AT_SHARP = 8,
   TD_HASH = 9,
-  TD_TAB = 10
+  TD_TAB = 10,
+  TD_OPENCURLY = 11
 };
 
 //Tap Dance Definitions
@@ -52,10 +53,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_QUOTDOUBLE] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, S(KC_QUOT)),
   [TD_HYPHEN] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, S(KC_MINS)),
   [TD_BACKSLASH] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_BSLS),
-  [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+  [TD_ESC_UNDO] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, LGUI(KC_Z)),
   [TD_AT_SHARP] = ACTION_TAP_DANCE_DOUBLE(S(KC_2),S(KC_3)),
   [TD_HASH] = ACTION_TAP_DANCE_DOUBLE(KC_JYEN, S(KC_GRV)),
-  [TD_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, S(KC_TAB))
+  [TD_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, S(KC_TAB)),
+  [TD_OPENCURLY] = ACTION_TAP_DANCE_DOUBLE(KC_G, S(KC_LBRC))
+
 // Other declarations would go here, separated by commas, if you have them
 };
 
@@ -79,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP( \
-  ARROWS ,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    S(KC_TAB), \
-  MT(MOD_LCTL, KC_TAB),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-  GUI,  TD(TD_ESC_CAPS), KC_LALT, KC_LGUI, MT(MOD_LGUI, KC_BSPC),   LOWER,  MT(MOD_LSFT, KC_SPC),  KC_LGUI,   RAISE, KC_DOWN, KC_UP,   GUI \
+  TD(TD_ESC_UNDO) ,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    S(KC_TAB), \
+  MT(MOD_LCTL, KC_TAB),  KC_A,    KC_S,    KC_D,    LT(_ARROWS, KC_F),    TD(TD_OPENCURLY),    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  OSM(MOD_LSFT), MT(MOD_LSFT, KC_Z),    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+  GUI,  TD(TD_ESC_UNDO), KC_LALT, KC_LGUI, MT(MOD_LGUI, KC_BSPC),   LT(_LOWER, KC_TAB),  MT(MOD_LSFT, KC_SPC),  MT(MOD_LGUI, KC_ENT),  RAISE, KC_DOWN, KC_UP,   GUI \
 ), 
 
 /* Colemak
@@ -100,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ARROWS,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC, \
   KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  LT(RAISE, KC_TAB),  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Dvorak
@@ -118,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ARROWS,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC, \
   KC_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH, \
   KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_ENT , \
-  _______,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   _______ \
+  _______,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  LT(LOWER, KC_TAB),  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   _______ \
 ),
 
 /* Lower
@@ -133,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = KEYMAP( \
-  ARROWS      , KC_EXLM, KC_PPLS, TD(TD_HYPHEN), KC_PEQL,  TD(TD_BRACKET), TD(TD_CLOSE_BRACKET),   KC_7, KC_8, KC_9, S(KC_7), KC_F12 , \
+  _______      , KC_EXLM, KC_PPLS, TD(TD_HYPHEN), KC_PEQL,  TD(TD_BRACKET), TD(TD_CLOSE_BRACKET),   KC_7, KC_8, KC_9, S(KC_7), KC_F12 , \
   _______,  KC_GRV, S(KC_8) , S(KC_5),   TD(TD_BACKSLASH),   TD(TD_CURLY),   TD(TD_CLOSE_CURLY),   KC_4, KC_5, KC_6, S(KC_BSLS), KC_PIPE, \
   _______           , KC_F7,   TD(TD_AT_SHARP),   S(KC_4), TD(TD_HASH), TD(TD_QUOTDOUBLE), KC_0       ,    KC_1  , KC_2 ,KC_3, S(KC_1), _______, \
   _______           , _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, KC_VOLU, _______ \
@@ -151,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = KEYMAP( \
-  ARROWS,  KC_1,    KC_2,    KC_3,    KC_4,    LGUI(KC_F10),    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
+  _______,  KC_1,    KC_2,    KC_3,    KC_4,    LGUI(KC_F10),    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, KC_VOLU, _______ \
@@ -189,10 +192,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ARROWS] = KEYMAP( \
-  _______, _______, _______, _______, XXXXXXX, XXXXXXX, LALT(KC_LEFT), LALT(KC_UP), LALT(KC_DOWN), LALT(KC_RIGHT), _______, _______, \
-  _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, _______, _______, \
-  _______, _______, _______, _______, XXXXXXX, XXXXXXX, LGUI(KC_LEFT), LGUI(KC_UP), LGUI(KC_DOWN), LGUI(KC_RIGHT), _______, _______, \
-  _______, _______, _______, _______, _______, _______, LCTL(KC_LEFT), LCTL(KC_UP), LCTL(KC_DOWN), LCTL(KC_RIGHT), _______, _______ \
+  _______, _______, _______, _______, _______, _______, LALT(KC_LEFT), LALT(KC_UP), LALT(KC_DOWN), LALT(KC_RIGHT), _______, _______, \
+  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, _______, _______, \
+  _______, _______, _______, _______, _______, _______, LGUI(KC_LEFT), LGUI(KC_UP), LGUI(KC_DOWN), LGUI(KC_RIGHT), _______, _______, \
+  _______, _______, _______, _______, _______, _______, KC_PGUP, KC_PGDN, LCTL(KC_DOWN), LCTL(KC_RIGHT), _______, _______ \
 ),
 
 

@@ -42,5 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAPPING_TERM 150
 
+#define PERMISSIVE_HOLD
+
+#define ONESHOT_TAP_TOGGLE 1
+
 #endif
 
