@@ -40,9 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_MAX_SPEED         8
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 80
 
-#define TAPPING_TERM 150
-
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 120
 
 #define ONESHOT_TAP_TOGGLE 1
 

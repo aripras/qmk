@@ -82,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP( \
-  TD(TD_ESC_UNDO) ,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    S(KC_TAB), \
-  MT(MOD_LCTL, KC_TAB),  KC_A,    KC_S,    KC_D,    LT(_ARROWS, KC_F),    TD(TD_OPENCURLY),    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  OSM(MOD_LSFT), MT(MOD_LSFT, KC_Z),    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-  GUI,  TD(TD_ESC_UNDO), KC_LALT, KC_LGUI, MT(MOD_LGUI, KC_BSPC),   LT(_LOWER, KC_TAB),  MT(MOD_LSFT, KC_SPC),  MT(MOD_LGUI, KC_ENT),  RAISE, KC_DOWN, KC_UP,   GUI \
+  TD(TD_ESC_UNDO) ,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,   S(KC_TAB), \
+  MT(MOD_LCTL, KC_TAB),  KC_A,    KC_S,    KC_D,    LT(_ARROWS, KC_F),    KC_G,    KC_H,    MT(MOD_LSFT|MOD_LGUI , KC_J),    KC_K,    KC_L,    KC_SCLN, LCTL(KC_A), \
+  KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+  GUI,  TD(TD_ESC_UNDO), KC_LALT, KC_LALT, MT(MOD_LGUI, KC_BSPC),   LT(_LOWER, KC_TAB),  MT(MOD_LSFT, KC_SPC),  MT(MOD_LGUI, KC_GRV),  RAISE, KC_DOWN, KC_UP,   GUI \
 ), 
 
 /* Colemak
@@ -136,9 +136,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = KEYMAP( \
-  _______      , KC_EXLM, KC_PPLS, TD(TD_HYPHEN), KC_PEQL,  TD(TD_BRACKET), TD(TD_CLOSE_BRACKET),   KC_7, KC_8, KC_9, S(KC_7), KC_F12 , \
+  _______      , KC_RO, KC_PPLS, TD(TD_HYPHEN), KC_PEQL,  TD(TD_BRACKET), TD(TD_CLOSE_BRACKET),   KC_7, KC_8, KC_9, S(KC_7), KC_F12 , \
   _______,  KC_GRV, S(KC_8) , S(KC_5),   TD(TD_BACKSLASH),   TD(TD_CURLY),   TD(TD_CLOSE_CURLY),   KC_4, KC_5, KC_6, S(KC_BSLS), KC_PIPE, \
-  _______           , KC_F7,   TD(TD_AT_SHARP),   S(KC_4), TD(TD_HASH), TD(TD_QUOTDOUBLE), KC_0       ,    KC_1  , KC_2 ,KC_3, S(KC_1), _______, \
+  _______           , KC_CIRC,   TD(TD_AT_SHARP),   S(KC_4), TD(TD_HASH), TD(TD_QUOTDOUBLE), KC_0       ,    KC_1  , KC_2 ,KC_3, S(KC_1), _______, \
   _______           , _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, KC_VOLU, _______ \
 ),
 
@@ -173,8 +173,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_GUI] = KEYMAP( \
-  _______, _______, KC_UP, _______, _______, _______,  KC_LALT, KC_WH_U, KC_MS_U  , KC_WH_D, XXXXXXX, _______, \
-  _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______,  KC_LCTL, KC_MS_L  , KC_MS_D, KC_MS_R,XXXXXXX, _______, \
+  _______, _______, KC_UP, LGUI(KC_X), LGUI(KC_C), _______,  KC_LALT, KC_WH_U, KC_MS_U  , KC_WH_D, XXXXXXX, _______, \
+  _______, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_V), _______,  KC_LCTL, KC_MS_L  , KC_MS_D, KC_MS_R,XXXXXXX, _______, \
   _______, _______, _______, _______, _______, _______,  KC_LGUI, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX, _______, \
   _______, _______, _______, _______, XXXXXXX, KC_ACL1, KC_ACL0, KC_ACL2, _______, _______, _______, _______ \
 ),
@@ -192,11 +192,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ARROWS] = KEYMAP( \
-  _______, _______, _______, _______, _______, _______, LALT(KC_LEFT), LALT(KC_UP), LALT(KC_DOWN), LALT(KC_RIGHT), _______, _______, \
-  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, _______, _______, \
-  _______, _______, _______, _______, _______, _______, LGUI(KC_LEFT), LGUI(KC_UP), LGUI(KC_DOWN), LGUI(KC_RIGHT), _______, _______, \
-  _______, _______, _______, _______, _______, _______, KC_PGUP, KC_PGDN, LCTL(KC_DOWN), LCTL(KC_RIGHT), _______, _______ \
-),
+  _______, _______, _______, _______, _______, _______, LALT(KC_LEFT), LALT(KC_DOWN), LALT(KC_UP), LALT(KC_RIGHT), _______, _______, \
+  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______, \
+  _______, _______, _______, _______, _______, _______, LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RIGHT), _______, _______, \
+  _______, _______, _______, _______, _______, _______, XXXXXXX, KC_PGDN, LCTL(KC_DOWN), LCTL(KC_RIGHT), _______, _______ \
+),  
 
 
 /* Adjust (Lower + Raise)
